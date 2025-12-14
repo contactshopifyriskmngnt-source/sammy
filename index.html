@@ -1,84 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shopify Partner Support</title>
+  <link rel="stylesheet" href="style.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/feather-icons"></script>
-
-  <!-- Inline styles for animations, toast, dark-mode, validation -->
-  <style>
-    /* Modal slide-in */
-    .modal-enter { opacity: 0; transform: translateY(24px); }
-    .modal-enter-active { opacity: 1; transform: translateY(0); transition: all 260ms cubic-bezier(.2,.8,.2,1); }
-
-    /* Input error */
-    .input-error { border-color: #dc2626 !important; animation: shake 0.22s ease-in-out 0s 2; }
-    @keyframes shake {
-      0% { transform: translateX(0) }
-      25% { transform: translateX(-4px) }
-      50% { transform: translateX(4px) }
-      75% { transform: translateX(-4px) }
-      100% { transform: translateX(0) }
-    }
-
-    /* spinner */
-    .spinner { width: 18px; height: 18px; border: 3px solid transparent; border-radius: 50%; border-left-color: white; animation: spin .7s linear infinite; display:inline-block; vertical-align: middle; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* Toast container */
-    #toastContainer {
-      position: fixed;
-      right: 20px;
-      bottom: 22px;
-      z-index: 60;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: flex-end;
-    }
-    .toast {
-      min-width: 240px;
-      max-width: 360px;
-      background: #111827;
-      color: #fff;
-      padding: 12px 14px;
-      border-radius: 10px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.18);
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      transform: translateY(14px);
-      opacity: 0;
-      transition: all 300ms ease;
-    }
-    .toast.show { transform: translateY(0); opacity: 1; }
-    .toast.success { background: linear-gradient(90deg,#059669,#10b981); }
-
-    /* Dark mode overrides (applies when body has .dark) */
-    body.dark { background: linear-gradient(135deg,#0f172a,#064e3b) !important; color: #e6eef0; }
-    body.dark .bg-white { background: #0b1220 !important; }
-    body.dark .text-gray-800 { color: #e6eef0 !important; }
-    body.dark .text-gray-600 { color: #94a3b8 !important; }
-    body.dark .border-gray-300 { border-color: rgba(255,255,255,0.06) !important; }
-
-    /* Dark-mode toggle */
-    .mode-toggle { position: fixed; top: 14px; right: 14px; z-index: 70; }
-
-    /* small responsive */
-    @media (max-width:640px){ .notice-icon { display:none } }
-  </style>
 </head>
 <body class="bg-gradient-to-br from-blue-900 to-teal-600 min-h-screen">
-
-  <!-- Dark mode toggle -->
-  <div class="mode-toggle">
-    <button id="darkToggle" title="Toggle dark mode" class="p-2 rounded-md bg-white/80 hover:bg-white/90 ring-1 ring-white/20">
-      <i data-feather="moon" class="w-5 h-5 text-gray-700"></i>
-    </button>
-  </div>
-
   <custom-navbar></custom-navbar>
 
   <main class="flex items-center justify-center min-h-[calc(100vh-100px)] p-4">
@@ -89,26 +19,25 @@
         </div>
 
         <div class="flex items-start mb-6">
-          <div class="mr-4 text-blue-600 notice-icon">
+          <div class="mr-4 text-blue-600">
             <i data-feather="life-buoy" class="w-8 h-8"></i>
           </div>
           <div>
             <h1 class="text-2xl font-bold text-gray-800 mb-2">Are you experiencing issues with your store?</h1>
-            <p class="text-gray-600">Contact a live partner advisor — choose an option below to connect and submit a short support request.</p>
+            <p class="text-gray-600">No need to worry — you can contact a live partner advisor to assist you with your Shopify store setup, issues, or optimization. Choose one of the options below to connect immediately.</p>
           </div>
         </div>
-
         <div class="space-y-4">
-          <button id="whatsappBtn" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg font-medium transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
-            <i data-feather="message-circle" class="w-5 h-5"></i> Chat on WhatsApp
+          <button id="whatsappBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+            <i data-feather="message-circle" class="w-5 h-5"></i>
+            Chat on WhatsApp
           </button>
-
-          <button id="TelegramBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
-            <i data-feather="message-circle" class="w-5 h-5"></i> Chat on Telegram
+          <button id="emailBtn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-6 rounded-lg font-medium transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+            <i data-feather="mail" class="w-5 h-5"></i>
+            Contact via Email
           </button>
         </div>
-
-        <div class="mt-6 border-t pt-4 text-center text-sm text-gray-500">
+<div class="mt-6 border-t pt-4 text-center text-sm text-gray-500">
           <p>Our average response time is under 30 minutes</p>
         </div>
       </div>
@@ -119,23 +48,15 @@
   <div id="contactModal" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50 z-50">
     <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
       <h2 class="text-xl font-semibold text-gray-800 mb-4">Submit Support Request</h2>
-      <form id="contactForm" class="space-y-3" novalidate>
-        <input type="text" id="brandName" placeholder="Brand Name" required class="w-full border border-gray-300 rounded-lg p-2">
-        <div class="flex gap-2">
-          <input type="text" id="ticketId" placeholder="Ticket ID (auto)" readonly class="flex-1 border border-gray-300 rounded-lg p-2 bg-gray-50">
-          <button type="button" id="regenTicket" title="Regenerate ticket" class="px-3 py-2 rounded-lg bg-gray-100 ring-1 ring-gray-200">🔁</button>
-        </div>
-        <input type="url" id="storeUrl" placeholder="https://yourstore.myshopify.com" required class="w-full border border-gray-300 rounded-lg p-2">
-        <input type="text" id="location" placeholder="Location of Operation" required class="w-full border border-gray-300 rounded-lg p-2">
-        <textarea id="issue" placeholder="Short Note About the Issue" required class="w-full border border-gray-300 rounded-lg p-2 h-24"></textarea>
-        <div class="flex items-center justify-between text-sm text-gray-500">
-          <div id="urlHint">Accepted: <code>*.myshopify.com</code> or full https URL</div>
-          <div id="formState" class="text-xs"></div>
-        </div>
-
+      <form id="contactForm" class="space-y-3">
+        <input type="text" id="brandName" placeholder="Brand Name" required class="w-full border rounded-lg p-2">
+        <input type="text" id="ticketId" placeholder="Enter your ticket ID" class="w-full border rounded-lg p-2">
+<input type="url" id="storeUrl" placeholder="https://yourstore.myshopify.com" required class="w-full border rounded-lg p-2">
+        <input type="text" id="location" placeholder="Location of Operation" required class="w-full border rounded-lg p-2">
+        <textarea id="issue" placeholder="Short Note About the Issue" required class="w-full border rounded-lg p-2 h-24"></textarea>
         <div class="flex justify-end gap-2 pt-2">
           <button type="button" id="closeModal" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">Cancel</button>
-          <button type="submit" id="submitForm" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium">Submit</button>
+          <button type="submit" id="submitForm" class="px-4 py-2 text-white rounded-lg font-medium">Submit</button>
         </div>
       </form>
     </div>
@@ -143,251 +64,62 @@
 
   <custom-footer></custom-footer>
 
-  <!-- Toast container -->
-  <div id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+  <script src="components/navbar.js"></script>
+  <script src="components/footer.js"></script>
+  <script src="script.js"></script>
 
   <script>
     feather.replace();
 
-    // Elements
     const modal = document.getElementById('contactModal');
+    const emailBtn = document.getElementById('emailBtn');
     const whatsappBtn = document.getElementById('whatsappBtn');
-    const telegramBtn = document.getElementById('TelegramBtn');
     const closeModal = document.getElementById('closeModal');
     const contactForm = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitForm');
-    const ticketInput = document.getElementById('ticketId');
-    const regenTicket = document.getElementById('regenTicket');
-    const toastContainer = document.getElementById('toastContainer');
-    const darkToggle = document.getElementById('darkToggle');
-    const urlField = document.getElementById('storeUrl');
-    const urlHint = document.getElementById('urlHint');
-    const formState = document.getElementById('formState');
-
     let contactType = '';
 
-    /* ---------------------------
-       Dark mode (persistent)
-       --------------------------- */
-    function applyDarkMode(enabled) {
-      if (enabled) {
-        document.body.classList.add('dark');
-        darkToggle.innerHTML = '<i data-feather="sun" class="w-5 h-5 text-yellow-300"></i>';
-      } else {
-        document.body.classList.remove('dark');
-        darkToggle.innerHTML = '<i data-feather="moon" class="w-5 h-5 text-gray-700"></i>';
-      }
-      feather.replace();
-    }
-
-    // Initialize dark mode from localStorage
-    const darkPref = localStorage.getItem('support_dark_mode') === 'true';
-    applyDarkMode(darkPref);
-
-    darkToggle.addEventListener('click', () => {
-      const enabled = !document.body.classList.contains('dark');
-      localStorage.setItem('support_dark_mode', String(enabled));
-      applyDarkMode(enabled);
-    });
-
-    /* ---------------------------
-       Ticket ID generator
-       --------------------------- */
-    function makeTicketId() {
-      // short unique-ish id e.g. TKT-4f7b-2a9
-      const parts = [];
-      for (let i = 0; i < 3; i++) {
-        parts.push(Math.random().toString(36).substring(2, 6));
-      }
-      return `TKT-${parts.join('-')}`;
-    }
-    function setNewTicket() { ticketInput.value = makeTicketId(); }
-
-    regenTicket.addEventListener('click', setNewTicket);
-
-    /* ---------------------------
-       Modal open/close w/ animation
-       --------------------------- */
-    function openModal(type, colorClass) {
-      contactType = type;
-      submitBtn.className = `px-4 py-2 text-white rounded-lg font-medium ${colorClass}`;
-      setNewTicket();
+    emailBtn.addEventListener('click', () => {
+      contactType = 'email';
+      submitBtn.className = 'px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-medium';
       modal.classList.remove('hidden');
       modal.classList.add('flex');
+    });
 
-      // animate inner box
-      const box = modal.querySelector('.rounded-lg');
-      box.classList.remove('modal-enter-active');
-      box.classList.add('modal-enter');
-      // force reflow then add active class
-      void box.offsetWidth;
-      box.classList.add('modal-enter-active');
-      // reset any state
-      clearValidation();
-    }
-
-    whatsappBtn.addEventListener('click', () => openModal('whatsapp', 'bg-green-600 hover:bg-green-700'));
-    telegramBtn.addEventListener('click', () => openModal('telegram', 'bg-blue-600 hover:bg-blue-700'));
+    whatsappBtn.addEventListener('click', () => {
+      contactType = 'whatsapp';
+      submitBtn.className = 'px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium';
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    });
 
     closeModal.addEventListener('click', () => {
       modal.classList.add('hidden');
       modal.classList.remove('flex');
     });
 
-    /* ---------------------------
-       Validation helpers
-       --------------------------- */
-    function showError(input, message = '') {
-      input.classList.add('input-error');
-      if (message) showToast(message, 'error');
-      setTimeout(() => input.classList.remove('input-error'), 700);
-    }
-
-    function clearValidation() {
-      formState.textContent = '';
-      [document.getElementById('brandName'),
-       document.getElementById('storeUrl'),
-       document.getElementById('location'),
-       document.getElementById('issue')].forEach(i => i.classList.remove('input-error'));
-    }
-
-    /* Store URL validation:
-       - Accepts https://yourstore.myshopify.com (subdomain)
-       - Accepts full https://customdomain.com (starts with https://)
-       We'll require https:// for custom domains for safety.
-    */
-    function validateStoreUrl(value) {
-      if (!value) return false;
-      try {
-        const v = value.trim();
-        // if it looks like myshopify subdomain (no spaces)
-        const myshopifyRegex = /^[a-z0-9][a-z0-9\-]*\.myshopify\.com$/i;
-        // remove protocol if user included it
-        const withoutProto = v.replace(/^https?:\/\//i, '');
-        if (myshopifyRegex.test(withoutProto)) return true;
-        // otherwise require https:// scheme and a domain pattern
-        const url = new URL(v);
-        if (url.protocol !== 'https:') return false;
-        // basic host sanity check
-        if (url.hostname.length < 3) return false;
-        return true;
-      } catch (err) {
-        return false;
-      }
-    }
-
-    // Live validation feedback for store URL
-    urlField.addEventListener('input', () => {
-      const ok = validateStoreUrl(urlField.value);
-      if (!urlField.value.trim()) {
-        urlHint.innerHTML = 'Accepted: <code>*.myshopify.com</code> or full https URL';
-      } else if (ok) {
-        urlHint.innerHTML = '<span class="text-green-400">Valid store URL</span>';
-      } else {
-        urlHint.innerHTML = '<span class="text-red-400">Invalid URL — use myshopify subdomain or https://custom-domain</span>';
-      }
-    });
-
-    /* ---------------------------
-       Toast (simple Toastify-style)
-       --------------------------- */
-    function showToast(message, type = 'success', duration = 3000) {
-      const t = document.createElement('div');
-      t.className = 'toast' + (type === 'success' ? ' success' : '');
-      t.innerHTML = `<div class="flex-1 text-sm">${message}</div><div class="text-xs opacity-80">X</div>`;
-      toastContainer.appendChild(t);
-      // small delay to trigger transition
-      requestAnimationFrame(() => t.classList.add('show'));
-      // click to remove
-      t.addEventListener('click', () => hideToast(t));
-      // auto remove
-      setTimeout(() => hideToast(t), duration);
-      return t;
-    }
-    function hideToast(t) {
-      if (!t) return;
-      t.classList.remove('show');
-      setTimeout(() => { t.remove(); }, 320);
-    }
-
-    /* ---------------------------
-       Submit handling (with loading)
-       --------------------------- */
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      const brand = document.getElementById('brandName').value.trim();
+      const store = document.getElementById('storeUrl').value.trim();
+      const location = document.getElementById('location').value.trim();
+      const issue = document.getElementById('issue').value.trim();
+      const ticket = 'f0b1a2c3-4d5e';
 
-      const brand = document.getElementById('brandName');
-      const store = document.getElementById('storeUrl');
-      const location = document.getElementById('location');
-      const issue = document.getElementById('issue');
-      const ticket = ticketInput.value || makeTicketId();
-
-      // basic required checks
-      if (!brand.value.trim()) { showError(brand, 'Please enter a brand name'); return; }
-      if (!store.value.trim()) { showError(store, 'Please enter your store URL'); return; }
-      if (!validateStoreUrl(store.value.trim())) { showError(store, 'Store URL is invalid'); return; }
-      if (!location.value.trim()) { showError(location, 'Enter your location'); return; }
-      if (!issue.value.trim()) { showError(issue, 'Please describe the issue'); return; }
-
-      // prepare message
-      const message =
-        `Brand Name: ${encodeURIComponent(brand.value.trim())}%0A` +
-        `Ticket ID: ${encodeURIComponent(ticket)}%0A` +
-        `Store URL: ${encodeURIComponent(store.value.trim())}%0A` +
-        `Location: ${encodeURIComponent(location.value.trim())}%0A` +
-        `Issue: ${encodeURIComponent(issue.value.trim())}`;
-
-      // show loading on button
-      const originalHtml = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<span class="spinner"></span>';
-      submitBtn.disabled = true;
-
-      // simulated processing delay (keep short)
-      setTimeout(() => {
-        // open appropriate chat
-        try {
-          if (contactType === 'telegram') {
-            window.open(`https://t.me/IsaacPortal_Shopify?text=${message}`, '_blank');
-          } else {
-            // preferred: use wa.me with country code included in the href
-            window.open(`https://wa.me/12899673640?text=${message}`, '_blank');
-          }
-        } catch (err) {
-          showToast('Could not open messaging app — copy your message and contact support manually.', 'error', 4500);
-        }
-
-        // reset UI
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalHtml;
-        contactForm.reset();
-        setNewTicket();
-        modal.classList.add('hidden');
-
-        // success toast
-        showToast('✅ Request submitted successfully — opening chat now.', 'success', 3800);
-      }, 900);
-    });
-
-    // auto-generate first ticket on load
-    setNewTicket();
-
-    // close modal on ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        if (!modal.classList.contains('hidden')) {
-          modal.classList.add('hidden');
-          modal.classList.remove('flex');
-        }
+      if (contactType === 'email') {
+        const subject = `New Support Request — ${brand}`;
+        const body = `Brand Name: ${brand}%0D%0ATicket ID: ${ticket}%0D%0AStore URL: ${store}%0D%0ALocation: ${location}%0D%0AIssue: ${issue}`;
+        window.open(`mailto:thevertex.dimensions@gmail.com?subject=${subject}&body=${body}`);
+} else if (contactType === 'whatsapp') {
+        const message = `Brand Name: ${brand}%0ATicket ID: ${ticket}%0AStore URL: ${store}%0ALocation: ${location}%0AIssue: ${issue}`;
+        window.open(`https://wa.me/12899673640?text=${message}`);
       }
+
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      contactForm.reset();
     });
-
-    // small helper exposed for console testing (optional)
-    window.__supportHelpers = { makeTicketId };
-
   </script>
-
-  <!-- keep your component scripts (optional) -->
-  <script src="components/navbar.js"></script>
-  <script src="components/footer.js"></script>
+<script src="https://huggingface.co/deepsite/deepsite-badge.js"></script>
 </body>
 </html>
